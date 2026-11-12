@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook de Abordagem e Prospecção Comercial · GENTTE</title>
+
+    <!-- FONTES GENTTE -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- TAILWIND CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            DEFAULT: '#EDEBE2',
+                            mid: '#E0DDD3',
+                            dark: '#D5D2C8',
+                            light: '#F7F5EF',
+                        },
+                        ink: {
+                            DEFAULT: '#1A1816',
+                            soft: '#4A4740',
+                            muted: '#6B6965',
+                            dark: '#141311',
+                        },
+                        gold: {
+                            DEFAULT: '#B8956A',
+                            light: '#D4B896',
+                            dark: '#9E7D53',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Jost"', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #EDEBE2;
+            color: #1A1816;
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        .tab-btn.active {
+            background-color: #1A1816;
+            color: #F7F5EF;
+            border-color: #1A1816;
+        }
+
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Notificação Toast */
+        #copyToast {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        #copyToast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8 selection:bg-gold selection:text-white">
+
+    <div class="max-w-4xl mx-auto">
+        
+        <!-- CABEÇALHO -->
+        <header class="border-b border-cream-dark pb-6 mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <span class="text-[10px] tracking-[0.35em] uppercase text-gold font-medium block mb-1">Estratégia de Prospecção Curada</span>
+                <h1 class="font-serif text-3xl sm:text-4xl font-light text-ink">
+                    Abordagem: O Gatilho da "Seleção"
+                </h1>
+                <p class="text-xs sm:text-sm text-ink-muted mt-1 font-light">
+                    Roteiros baseados no envio da proposta de Entrega Única, focados no mapeamento do perfil e na carência digital da empresa.
+                </p>
+            </div>
+            <div class="px-4 py-2 bg-cream-light border border-cream-dark rounded-sm text-center">
+                <span class="font-serif text-xl text-ink font-light block">GENTTE</span>
+                <span class="text-[9px] tracking-widest uppercase text-ink-muted">Playbook Atualizado</span>
+            </div>
+        </header>
+
+        <!-- ALERTA ESTRATÉGICO -->
+        <div class="bg-ink text-cream p-5 rounded-sm mb-8 border-l-2 border-gold flex items-start gap-4 shadow-sm">
+            <span class="text-gold font-serif text-2xl leading-none mt-0.5">✦</span>
+            <div class="text-xs sm:text-sm leading-relaxed">
+                <p class="font-medium text-cream-light font-serif text-base mb-1">O Tom da Conversa:</p>
+                <p class="text-cream-mid font-light">
+                    A frase-chave agora é: <strong>"Fizemos um mapeamento, o teu perfil foi selecionado porque vimos que dá pra fazer um trabalho bem legal e existe uma carência..."</strong>. Isso ativa a vaidade (foi selecionado), a curiosidade (trabalho legal) e o senso de urgência (carência).
+                </p>
+            </div>
+        </div>
+
+        <!-- ABAS DE NAVEGAÇÃO -->
+        <div class="flex flex-wrap gap-2 mb-6 border-b border-cream-dark pb-3">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active px-4 py-2 text-xs uppercase tracking-wider font-medium border border-cream-dark bg-ink text-cream transition-all rounded-sm">
+                1. O "Print" Duplo + 3 Pontos
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn px-4 py-2 text-xs uppercase tracking-wider font-medium border border-cream-dark bg-cream-light text-ink hover:bg-cream-mid transition-all rounded-sm">
+                2. Direct do Instagram
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn px-4 py-2 text-xs uppercase tracking-wider font-medium border border-cream-dark bg-cream-light text-ink hover:bg-cream-mid transition-all rounded-sm">
+                3. Roteiro do Áudio
+            </button>
+            <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn px-4 py-2 text-xs uppercase tracking-wider font-medium border border-cream-dark bg-cream-light text-ink hover:bg-cream-mid transition-all rounded-sm">
+                4. Contornando Objeções
+            </button>
+        </div>
+
+        <!-- CONTEÚDO DAS ABAS -->
+
+        <!-- ABA 1: O PRINT DUPLO + OS 3 PONTOS (ARMADILHA DE CONVERSÃO) -->
+        <div id="tab1" class="tab-content active space-y-6">
+            <div class="bg-cream-light border border-cream-dark p-6 rounded-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] tracking-[0.25em] uppercase text-gold font-medium">Técnica: Mapeamento + Prova Visual Dupla + 3 Pontos</span>
+                    <button onclick="copyText('copy-msg-1')" class="px-3 py-1 bg-ink hover:bg-ink-soft text-cream text-[11px] uppercase tracking-wider rounded-sm transition-all flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <span>Copiar Mensagem</span>
+                    </button>
+                </div>
+                
+                <h3 class="font-serif text-xl text-ink mb-2">Como aplicar na prática:</h3>
+                <p class="text-xs text-ink-soft mb-4 font-light leading-relaxed">
+                    <strong>Passo prévio:</strong> Tire <strong>dois prints</strong>. Um da busca no Google Maps perguntando pelo serviço dele (onde os concorrentes aparecem na frente) e outro do ChatGPT fazendo a mesma pergunta. Envie as duas imagens juntas e logo em seguida o texto abaixo:
+                </p>
+
+                <!-- TEXTO COPIÁVEL -->
+                <div class="bg-cream p-4 border border-cream-dark rounded-sm text-xs sm:text-sm text-ink-soft leading-relaxed font-mono whitespace-pre-wrap select-all" id="copy-msg-1">Opa, [Nome do Responsável], tudo bem? Aqui é o [Teu Nome], da agência GENTTE.
+
+Nós fizemos um mapeamento de alguns perfis aqui da região, e o da [Nome da Empresa] foi selecionado. Nós entendemos que dá pra fazer um trabalho bem legal com vocês porque hoje existe uma carência clara no posicionamento digital da empresa.
+
+Basicamente, identificamos 3 pontos importantes:
+1. Vocês ainda não têm um site focado em vendas com botão direto pro WhatsApp;
+2. Como te mostro no primeiro print acima, nas buscas do Google Maps pelo teu serviço os concorrentes estão aparecendo na frente;
+3. E no segundo print, que é do ChatGPT, o nome de vocês também não é citado nas recomendações.
+
+Isso significa que, se o cliente novo não chega por indicação, ele acaba indo pra concorrência.
+
+Como novembro e dezembro são meses fortes, a gente montou um pacote onde resolvemos essa carência e te entregamos a estrutura toda pronta em 7 dias (site, Google e IAs) num valor único e sem mensalidade.
+
+Faz sentido eu te mandar o link da nossa proposta pra tu avaliar a ideia, sem compromisso?</div>
+            </div>
+        </div>
+
+        <!-- ABA 2: DIRECT DO INSTAGRAM -->
+        <div id="tab2" class="tab-content space-y-6">
+            <div class="bg-cream-light border border-cream-dark p-6 rounded-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] tracking-[0.25em] uppercase text-gold font-medium">Técnica: Abertura Direta no Instagram</span>
+                    <button onclick="copyText('copy-msg-2')" class="px-3 py-1 bg-ink hover:bg-ink-soft text-cream text-[11px] uppercase tracking-wider rounded-sm transition-all flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <span>Copiar Mensagem</span>
+                    </button>
+                </div>
+
+                <h3 class="font-serif text-xl text-ink mb-2">Mensagem para o Direct:</h3>
+                <p class="text-xs text-ink-soft mb-4 font-light leading-relaxed">
+                    Mais curta, voltada a descobrir o responsável para levar a conversa para fora do Instagram.
+                </p>
+
+                <!-- TEXTO COPIÁVEL -->
+                <div class="bg-cream p-4 border border-cream-dark rounded-sm text-xs sm:text-sm text-ink-soft leading-relaxed font-mono whitespace-pre-wrap select-all" id="copy-msg-2">Opa, pessoal da [Nome da Loja]! Aqui é o [Teu Nome], da GENTTE (@gentte.ag).
+
+Fizemos um mapeamento de alguns perfis aqui da região, e o de vocês foi selecionado. Nós vimos que dá pra fazer um trabalho bem legal juntos porque hoje existe uma carência grande no posicionamento de vocês fora do Instagram (Google e IAs).
+
+A gente estruturou um pacote onde resolvemos essa carência entregando um site e o perfil do Google pronto em 7 dias, com um valor único e sem aquelas mensalidades de agência.
+
+Quem é a pessoa responsável aí pelo negócio pra eu mandar o link da nossa proposta pra vocês darem uma olhada?</div>
+            </div>
+        </div>
+
+        <!-- ABA 3: ROTEIRO DO ÁUDIO DE 1 MINUTO -->
+        <div id="tab3" class="tab-content space-y-6">
+            <div class="bg-cream-light border border-cream-dark p-6 rounded-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] tracking-[0.25em] uppercase text-gold font-medium">Tempo: 45 a 60 segundos</span>
+                    <button onclick="copyText('copy-msg-3')" class="px-3 py-1 bg-ink hover:bg-ink-soft text-cream text-[11px] uppercase tracking-wider rounded-sm transition-all flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <span>Copiar Roteiro</span>
+                    </button>
+                </div>
+
+                <h3 class="font-serif text-xl text-ink mb-2">Quando o cliente responde "Como funciona?":</h3>
+                <p class="text-xs text-ink-soft mb-4 font-light leading-relaxed">
+                    Grave de forma pausada e direta. Enfatize que é uma <strong>entrega definitiva</strong> e não uma "mensalidade de agência":
+                </p>
+
+                <!-- TEXTO COPIÁVEL -->
+                <div class="bg-cream p-4 border border-cream-dark rounded-sm text-xs sm:text-sm text-ink-soft leading-relaxed font-mono whitespace-pre-wrap select-all" id="copy-msg-3">"Fala, [Nome], beleza? Cara, o ponto principal é o seguinte:
+
+Hoje o cliente que tá com dinheiro na mão pesquisa de duas formas: ou ele vai no Google Maps, ou abre o ChatGPT e pergunta 'qual a melhor loja de tal coisa aqui na cidade'.
+
+Se você não tem um site rápido com o código estruturado, o robô não te lê e acaba recomendando teu concorrente.
+
+O que a gente montou aqui na GENTTE é uma entrega definitiva, de tiro curto: a gente sobe teu site oficial em até 7 dias, arruma teu Google Meu Negócio e prepara teus dados pras Inteligências Artificiais. Tudo focado em fazer o cliente achar vocês e chamar no WhatsApp do balcão.
+
+A gente empacotou isso num valor único, sem aquelas mensalidades infinitas de agência, e daqui a 45 dias a gente volta pra revisar os resultados de acessos que deram. Se fizer sentido, te mando o link da nossa página de proposta que explica o pacote certinho. O que acha?"</div>
+            </div>
+        </div>
+
+        <!-- ABA 4: RESPOSTAS ÀS OBJEÇÕES CLÁSSICAS -->
+        <div id="tab4" class="tab-content space-y-6">
+            <div class="bg-cream-light border border-cream-dark p-6 rounded-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] tracking-[0.25em] uppercase text-gold font-medium">Tempo: 45 a 60 segundos</span>
+                    <button onclick="copyText('copy-msg-4')" class="px-3 py-1 bg-ink hover:bg-ink-soft text-cream text-[11px] uppercase tracking-wider rounded-sm transition-all flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <span>Copiar Roteiro</span>
+                    </button>
+                </div>
+
+                <h3 class="font-serif text-xl text-ink mb-2">Quando o cliente responde "Como funciona?":</h3>
+                <p class="text-xs text-ink-soft mb-4 font-light leading-relaxed">
+                    Grave de forma pausada e direta. Enfatize que é uma <strong>entrega definitiva</strong> e não uma "mensalidade de agência":
+                </p>
+
+                <!-- TEXTO COPIÁVEL -->
+                <div class="bg-cream p-4 border border-cream-dark rounded-sm text-xs sm:text-sm text-ink-soft leading-relaxed font-mono whitespace-pre-wrap select-all" id="copy-msg-4">"Fala, [Nome], beleza? Cara, o ponto principal é o seguinte:
+
+Hoje o cliente que tá com dinheiro na mão pesquisa de duas formas: ou ele vai no Google Maps, ou abre o ChatGPT e pergunta 'qual a melhor loja de tal coisa aqui na cidade'.
+
+Se você não tem um site rápido com o código estruturado, o robô não te lê e acaba recomendando teu concorrente.
+
+O que a gente montou aqui na GENTTE é uma entrega definitiva, de tiro curto: a gente sobe teu site oficial em até 7 dias, arruma teu Google Meu Negócio e prepara teus dados pras Inteligências Artificiais. Tudo focado em fazer o cliente achar vocês e chamar no WhatsApp do balcão.
+
+A gente empacotou isso num valor único, sem aquelas mensalidades infinitas de agência, e daqui a 45 dias a gente volta pra revisar os resultados de acessos que deram. Se fizer sentido, te mando o link da nossa página de proposta que explica o pacote certinho. O que acha?"</div>
+            </div>
+        </div>
+
+        <!-- ABA 5: RESPOSTAS ÀS OBJEÇÕES CLÁSSICAS -->
+        <div id="tab5" class="tab-content space-y-6">
+            
+            <!-- Objeção 1 -->
+            <div class="bg-cream-light border border-cream-dark p-5 rounded-sm">
+                <span class="text-gold font-serif text-lg block mb-1">Objeção: "Mas a gente já tem quem faça nossos posts..."</span>
+                <p class="text-xs sm:text-sm text-ink-soft leading-relaxed mb-3">
+                    <strong>Como responder:</strong> 
+                    <em>"Perfeito, [Nome]! E o nosso pacote nem entra nisso, tanto que nós não fazemos post nem gestão de redes sociais. O nosso trabalho é construir a fundação técnica que geralmente a galera de social media não entrega: site rápido, Google otimizado pra buscas e código preparado pras IAs. Um serviço complementa o outro perfeitamente."</em>
+                </p>
+            </div>
+
+            <!-- Objeção 2 -->
+            <div class="bg-cream-light border border-cream-dark p-5 rounded-sm">
+                <span class="text-gold font-serif text-lg block mb-1">Objeção: "Quanto custa?" (Quando perguntam logo no início)</span>
+                <p class="text-xs sm:text-sm text-ink-soft leading-relaxed mb-3">
+                    <strong>Como responder:</strong> 
+                    <em>"O projeto completo com a criação do site oficial, indexação para IAs e Google Meu Negócio é um pacote fechado de R$ 3.300 (que a maioria divide em 3x sem juros). É pagamento único, sem mensalidade. Para o teu segmento, 1 ou 2 vendas extras vindas do Google já pagam o investimento todo. Dá uma olhada nessa apresentação rápida que detalha a entrega: [Link da Proposta]"</em>
+                </p>
+            </div>
+
+            <!-- Objeção 3 -->
+            <div class="bg-cream-light border border-cream-dark p-5 rounded-sm">
+                <span class="text-gold font-serif text-lg block mb-1">Objeção: "Deixa pra ano que vem, agora tá muito corrido."</span>
+                <p class="text-xs sm:text-sm text-ink-soft leading-relaxed mb-3">
+                    <strong>Como responder:</strong> 
+                    <em>"Entendo totalmente a correria, [Nome]. Mas a grande vantagem de entregarmos tudo em 7 dias é justamente porque o Google e as IAs levam algumas semanas para 'ler' a tua empresa nova. Quem estrutura isso agora em novembro entra em janeiro, e no resto de 2027, ranqueado na frente de quem deixou pra depois. Como nosso time faz 95% do trabalho pesado, não vai tomar o teu tempo."</em>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TOAST DE COPIADO -->
+    <div id="copyToast" class="fixed bottom-6 right-6 bg-ink text-cream px-4 py-2.5 rounded-sm border border-gold text-xs shadow-xl flex items-center gap-2">
+        <span class="text-gold">✓</span>
+        <span>Mensagem copiada para a área de transferência!</span>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('active', 'bg-ink', 'text-cream');
+                el.classList.add('bg-cream-light', 'text-ink');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.add('active', 'bg-ink', 'text-cream');
+            activeBtn.classList.remove('bg-cream-light', 'text-ink');
+        }
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            
+            // Clipboard compatível com iframes
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const toast = document.getElementById('copyToast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
